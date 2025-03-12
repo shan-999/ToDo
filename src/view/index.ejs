@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do App</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>To Do App</h1>
+
+        <!-- Input Form -->
+        <div class="input-container">
+            <form action="/add" method="POST" style="display: flex; width: 100%;">
+                <input id="title" type="text" name="title" placeholder="Enter a task" required>
+                <button type="submit" class="add">+</button>
+            </form>
+        </div>
+
+        <ul>
+            <% todos.forEach(todo => { %>
+                <li class="<%= todo.completed ? 'completed' : '' %>">
+                    <div class="checkbox-container">
+                        <form action="/complete/<%= todo.id %>" method="POST">
+                            <input type="checkbox" onchange="this.form.submit()" <%= todo.completed ? 'checked' : '' %>>
+                        </form>
+                        <span><%= todo.title %></span>
+                    </div>
+                    
+                    <form action="/delete/<%= todo.id %>" method="POST">
+                        <button type="submit" class="delete">X</button>
+                    </form>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded',() => {
+            document.getElementById('title').focus()
+        })
+    </script>
+
+</body>
+</html>
