@@ -24,7 +24,7 @@
                 <li class="<%= todo.completed ? 'completed' : '' %>">
                     <div class="checkbox-container">
                         <form action="/complete/<%= todo.id %>" method="POST">
-                            <input type="checkbox" onchange="this.form.submit()" <%= todo.completed ? 'checked' : '' %>>
+                            <input type="checkbox" required onchange="this.form.submit()" <%= todo.completed ? 'checked' : '' %>>
                         </form>
                         <span><%= todo.title %></span>
                     </div>

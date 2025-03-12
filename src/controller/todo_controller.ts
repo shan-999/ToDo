@@ -5,19 +5,22 @@ class TodoController {
 
 
     getTodos():Todo[] {
-        console.log(this.todos);
         return this.todos
     }
 
     addTodo(title:string):void {
-        const newTodo = new Todo(title)
-        this.todos.push(newTodo)
+        const newTodo = new Todo(title.trim())
+        console.log(newTodo.title.length);
+        
+        if(newTodo.title.length > 1){
+            this.todos.push(newTodo)
+        }
     }
 
     markCompleted(id:number): void{
         const todo = this.todos.find(t => t.id === id)
         if(todo){
-            todo.completed = true
+            todo.completed = todo.completed ? false : true
         }
     }
 
